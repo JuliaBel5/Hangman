@@ -1,0 +1,47 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  border-radius: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  overflow: auto;
+  background-color: rgba(224, 207, 207, 0.4);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  color: rgba(86, 71, 29, 1);
+  height: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.message {
+  height: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-button {
+  margin: auto;
+  width: 150px;
+  height: 50px;
+  background-color: rgb(109, 74, 70);
+  text-align: center;
+  color: rgb(237, 205, 46)
+}
