@@ -2,20 +2,24 @@ import { createElement } from './utils/createElement'
 
 export class Modal {
   constructor(section, game) {
+    this.overlay = null
     this.section = section
     this.game = game
     this.modal = null
   }
 
   create(title, message) {
+    this.overlay = createElement('div', 'overlay')
+    this.overlay.addEventListener('click', () => {})
+    this.section.append(this.overlay)
     this.modal = createElement('div', 'modal')
     this.modalContent = createElement('div', 'modal-content')
     this.title = createElement('div', 'title', title)
     this.message = createElement('div', 'message', message)
     this.modalButton = createElement('button', 'modal-button', 'Play again')
     this.modalButton.addEventListener('click', () => {
-      this.game.resetGame()
       this.remove()
+      this.game.resetGame()
     })
 
     this.modal.append(this.modalContent)
@@ -30,6 +34,9 @@ export class Modal {
   remove() {
     if (this.modal) {
       this.modal.remove()
+    }
+    if (this.overlay) {
+      this.overlay.remove()
     }
   }
 }

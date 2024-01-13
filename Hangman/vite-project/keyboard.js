@@ -45,12 +45,6 @@ export class VirtualKeyboard {
         }
       })
     })
-    this.counter = createElement(
-      'div',
-      'counter',
-      `Errors count: ${this.game.errors}`,
-    )
-    this.gameArea.firstChild.append(this.counter)
   }
 
   renderKeyboard(keyboard) {
@@ -74,6 +68,7 @@ export class VirtualKeyboard {
       let ind = word.toUpperCase().indexOf(key)
       while (ind !== -1) {
         this.game.letters[ind].classList.add('active')
+        this.game.letters[ind].style.border = 'none'
         ind = word.toUpperCase().indexOf(key, ind + 1)
       }
       if (
@@ -87,14 +82,17 @@ export class VirtualKeyboard {
     } else {
       this.game.countErrors()
       const errors = this.game.getErrors()
-      this.counter.textContent = `Errors count: ${errors}`
+      this.game.counter.textContent = `Errors count: ${errors}`
       console.log('errors count:', errors)
-      if (errors >= 7) {
+      if (errors === 7) {
         this.gallow.src = `gallow7.png`
         this.modal.showModal(
           "Oops! You've lost",
           `The word to guess was: ${this.game.word.toUpperCase()}`,
         )
+      }
+      if (errors > 7) {
+        this.game.counter.textContent = `Errors count: 7`
       } else {
         this.gallow.src = `gallow${errors}.png`
       }

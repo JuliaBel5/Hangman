@@ -8,11 +8,17 @@ export class Game {
     this.gamearea = gamearea
     this.section = section
     this.gallow = gallow
-    this.attempts = 0
     this.errors = 0
     this.word = ''
+    this.lastWord = ''
     this.modal = new Modal(this.gamearea)
     this.letters = []
+    this.counter = createElement(
+      'div',
+      'counter',
+      `Errors count: ${this.getErrors()}`,
+    )
+    this.gamearea.firstChild.append(this.counter)
   }
 
   init = () => {
@@ -21,8 +27,15 @@ export class Game {
   }
 
   getRandomWord = () => {
-    const randomIndex = Math.floor(Math.random() * wordsToGuess.length)
-    this.word = wordsToGuess[randomIndex]
+    let newWord
+    let randomIndex
+    do {
+      randomIndex = Math.floor(Math.random() * wordsToGuess.length)
+      newWord = wordsToGuess[randomIndex]
+    } while (newWord === this.lastWord)
+
+    this.word = newWord
+    this.lastWord = this.word
     this.question = createElement('div', 'question', questions[randomIndex])
     this.section.parentNode.insertBefore(this.question, this.section)
     console.log(this.word)
@@ -49,10 +62,6 @@ export class Game {
     return this.errors
   }
 
-  resetAttempts() {
-    this.attempts = 0
-  }
-
   resetErrors() {
     this.errors = 0
   }
@@ -71,9 +80,10 @@ export class Game {
       this.section.firstChild.remove()
     }
     this.gallow.src = 'gallow0.png'
-    this.resetAttempts()
     this.resetErrors()
+    this.counter.textContent = `Errors count: ${this.errors}`
     this.resetWord()
+    this.modal.remove()
     this.init()
   }
 }

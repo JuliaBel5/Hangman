@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .modal {
   display: flex;
   flex-direction: column;
@@ -12,7 +15,7 @@
   width: 400px;
   height: 300px;
   overflow: auto;
-  background-color: rgba(224, 207, 207, 0.4);
+  background-color: rgba(68, 62, 62, 0.4);
 }
 
 .modal-content {
@@ -24,6 +27,7 @@
 
 .title {
   font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
   color: rgba(86, 71, 29, 1);
   height: 20px;
   margin-top: 10px;
@@ -34,6 +38,8 @@
   height: 60px;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
@@ -43,5 +49,18 @@
   height: 50px;
   background-color: rgb(109, 74, 70);
   text-align: center;
-  color: rgb(237, 205, 46)
+  color: rgb(237, 205, 46);
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(245, 235, 235, 0.4);
+  z-index: 1;
+
 }

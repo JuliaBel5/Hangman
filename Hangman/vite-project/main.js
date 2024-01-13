@@ -28,4 +28,6 @@ leftPane.append(restartButton)
 const kboard = new VirtualKeyboard(gameArea, game, gallow)
 kboard.renderKeyboard(keyboard)
 
-restartButton.addEventListener('click', game.resetGame.bind(game))
+restartButton.addEventListener('click', () => {
+  game.resetGame()
+})
