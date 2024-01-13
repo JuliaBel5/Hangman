@@ -11,7 +11,8 @@ export class Game {
     this.errors = 0
     this.word = ''
     this.lastWord = ''
-    this.modal = new Modal(this.gamearea)
+    this.modal = new Modal(this.gamearea, this)
+    this.modalIsOpen = false
     this.letters = []
     this.counter = createElement(
       'div',
@@ -59,7 +60,46 @@ export class Game {
   }
 
   getErrors() {
+    if (this.errors === 0) {
+      this.gallow.src = `gallow0.png`
+    } else if (this.errors > 0 && this.errors < 7) {
+      this.gallow.src = `gallow${this.errors}.png`
+    } else if (this.errors === 7 && !this.modalIsOpen) {
+      this.gallow.src = `gallow7.png`
+      this.modal.showModal(
+        "Oops! You've lost",
+        `The word to guess was: ${this.word.toUpperCase()}`,
+      )
+      this.modalIsOpen = true
+    } else if (this.errors > 7) {
+      this.counter.textContent = `Errors count: 7`
+      this.gallow.src = `gallow7.png`
+    }
     return this.errors
+  }
+
+  checkKey(key) {
+    if (this.word.toUpperCase().includes(key)) {
+      let ind = this.word.toUpperCase().indexOf(key)
+      while (ind !== -1) {
+        this.letters[ind].classList.add('active')
+        this.letters[ind].style.border = 'none'
+        ind = this.word.toUpperCase().indexOf(key, ind + 1)
+      }
+    } else {
+      this.countErrors()
+      const errors = this.getErrors()
+      this.counter.textContent = `Errors count: ${errors}`
+    }
+  }
+
+  getStatus() {
+    if (this.letters.every((letter) => letter.classList.contains('active'))) {
+      this.modal.showModal(
+        'Wow! You won!!',
+        `The word to guess was: ${this.word.toUpperCase()}`,
+      )
+    }
   }
 
   resetErrors() {
@@ -83,7 +123,9 @@ export class Game {
     this.resetErrors()
     this.counter.textContent = `Errors count: ${this.errors}`
     this.resetWord()
+    this.modalIsOpen = false
     this.modal.remove()
+    this.letters = []
     this.init()
   }
 }

@@ -8,7 +8,7 @@ document.body.append(gameArea)
 const leftPane = createElement('div', 'leftPane')
 const rightPane = createElement('div', 'rightPane')
 gameArea.append(leftPane, rightPane)
-const title = createElement('div', 'title', 'Hangman')
+//const title = createElement('div', 'title', 'Hangman')
 const rules = 'Your task is to guess the word below:'
 const info = createElement('div', 'info', rules)
 const restartButton = createElement('button', 'restart', 'Restart game')

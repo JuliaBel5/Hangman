@@ -15,7 +15,7 @@
   width: 400px;
   height: 300px;
   overflow: auto;
-  background-color: rgba(68, 62, 62, 0.4);
+  background-color: rgba(68, 62, 62, 0.8);
 }
 
 .modal-content {
@@ -28,7 +28,7 @@
 .title {
   font-size: 24px;
   font-family: 'Montserrat', sans-serif;
-  color: rgba(86, 71, 29, 1);
+  color: rgb(246, 140, 18);
   height: 20px;
   margin-top: 10px;
   text-align: center;
@@ -39,19 +39,34 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 20px;
+  color: rgb(239, 243, 135);
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
 .modal-button {
-  margin: auto;
-  width: 150px;
-  height: 50px;
-  background-color: rgb(109, 74, 70);
-  text-align: center;
-  color: rgb(237, 205, 46);
-  font-size: 20px;
+  font-family: Arial, sans-serif;
   font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+
+  /* Define the background color and gradient */
+  background: linear-gradient(to right, rgb(109, 74, 70), rgb(241, 205, 179));
+  color: rgb(245, 239, 191);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(41, 30, 28);
+  cursor: pointer;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.modal-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, rgb(241, 205, 179), rgb(109, 74, 70));
+  color: rgb(248, 245, 213);
 }
 
 .overlay {
@@ -60,7 +75,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(245, 235, 235, 0.4);
+  background-color: rgba(245, 235, 235, 0.6);
   z-index: 1;
 
 }

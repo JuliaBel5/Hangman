@@ -18,7 +18,6 @@ export class Modal {
     this.message = createElement('div', 'message', message)
     this.modalButton = createElement('button', 'modal-button', 'Play again')
     this.modalButton.addEventListener('click', () => {
-      this.remove()
       this.game.resetGame()
     })
 
@@ -32,11 +31,10 @@ export class Modal {
   }
 
   remove() {
-    if (this.modal) {
-      this.modal.remove()
-    }
-    if (this.overlay) {
-      this.overlay.remove()
-    }
+    // eslint-disable-next-line unicorn/prefer-dom-node-remove
+    this.section.removeChild(this.modal)
+    this.overlay.remove()
+
+    //this.game.resetGame.bind(this.game)
   }
 }

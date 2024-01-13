@@ -1,4 +1,3 @@
-import { Modal } from './modal'
 import { createElement } from './utils/createElement'
 
 export class VirtualKeyboard {
@@ -6,7 +5,7 @@ export class VirtualKeyboard {
     this.gameArea = gamearea
     this.game = game
     this.gallow = gallow
-    this.modal = new Modal(this.gameArea, this.game)
+    this.modal = null
     this.keys = [
       'A',
       'B',
@@ -36,14 +35,26 @@ export class VirtualKeyboard {
       'Z',
     ]
     this.buttons = []
+    this.processingKeypress = false
+
+    console.log(this.processingKeypress)
     window.addEventListener('keydown', (event) => {
       const key = event.code.slice(-1)
-      this.handleKeyPress(key)
-      this.buttons.forEach((button) => {
-        if (button.textContent === key) {
-          button.classList.add('disabled')
-        }
-      })
+      const notAletter = key.charCodeAt(0)
+      if (this.processingKeypress) {
+        return
+      }
+      if (
+        (notAletter >= 65 && notAletter <= 90) ||
+        (notAletter >= 97 && notAletter <= 122)
+      ) {
+        this.handleKeyPress(key)
+        this.buttons.forEach((button) => {
+          if (button.textContent === key) {
+            button.classList.add('disabled')
+          }
+        })
+      }
     })
   }
 
@@ -55,6 +66,9 @@ export class VirtualKeyboard {
 
       button.addEventListener('click', () => {
         if (!button.classList.contains('disabled')) {
+          if (this.processingKeypress) {
+            return
+          }
           button.classList.add('disabled')
           this.handleKeyPress(key)
         }
@@ -63,47 +77,10 @@ export class VirtualKeyboard {
   }
 
   handleKeyPress(key) {
-    const word = this.game.getCurrentWord()
-    if (word.toUpperCase().includes(key)) {
-      let ind = word.toUpperCase().indexOf(key)
-      while (ind !== -1) {
-        this.game.letters[ind].classList.add('active')
-        this.game.letters[ind].style.border = 'none'
-        ind = word.toUpperCase().indexOf(key, ind + 1)
-      }
-      if (
-        this.game.letters.every((letter) => letter.classList.contains('active'))
-      ) {
-        this.modal.showModal(
-          'Wow! You won!!',
-          `The word to guess was: ${this.game.word.toUpperCase()}`,
-        )
-      }
-    } else {
-      this.game.countErrors()
-      const errors = this.game.getErrors()
-      this.game.counter.textContent = `Errors count: ${errors}`
-      console.log('errors count:', errors)
-      if (errors === 7) {
-        this.gallow.src = `gallow7.png`
-        this.modal.showModal(
-          "Oops! You've lost",
-          `The word to guess was: ${this.game.word.toUpperCase()}`,
-        )
-      }
-      if (errors > 7) {
-        this.game.counter.textContent = `Errors count: 7`
-      } else {
-        this.gallow.src = `gallow${errors}.png`
-      }
-    }
-  }
-
-  revealLetter(key) {
-    key.classList.add('active')
-  }
-
-  disableKey(key) {
-    key.classList.add('disabled')
+    this.processingKeypress = true
+    this.game.checkKey(key)
+    this.game.getStatus()
+    this.game.getErrors()
+    this.processingKeypress = false
   }
 }
