@@ -76,6 +76,14 @@ export class VirtualKeyboard {
         this.game.letters[ind].classList.add('active')
         ind = word.toUpperCase().indexOf(key, ind + 1)
       }
+      if (
+        this.game.letters.every((letter) => letter.classList.contains('active'))
+      ) {
+        this.modal.showModal(
+          'Wow! You won!!',
+          `The word to guess was: ${this.game.word.toUpperCase()}`,
+        )
+      }
     } else {
       this.game.countErrors()
       const errors = this.game.getErrors()
