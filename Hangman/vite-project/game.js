@@ -10,9 +10,9 @@ export class Game {
     this.gallow = gallow
     this.attempts = 0
     this.errors = 0
-    this.guesses = 0
     this.word = ''
     this.modal = new Modal(this.gamearea)
+    this.letters = []
   }
 
   init = () => {
@@ -32,7 +32,7 @@ export class Game {
   createGuessWord = (word, section) => {
     word.split('').forEach((el) => {
       const letter = createElement('div', 'letter-to-guess', el.toUpperCase())
-
+      this.letters.push(letter)
       section.append(letter)
     })
   }
@@ -61,10 +61,6 @@ export class Game {
     this.word = ''
   }
 
-  resetGuesses() {
-    this.guesses = 0
-  }
-
   resetGame() {
     const buttons = this.gamearea.querySelectorAll('.keyboard-button.disabled')
     buttons.forEach((button) => {
@@ -77,7 +73,6 @@ export class Game {
     this.gallow.src = 'gallow0.png'
     this.resetAttempts()
     this.resetErrors()
-    this.resetGuesses()
     this.resetWord()
     this.init()
   }

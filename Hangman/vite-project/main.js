@@ -1,12 +1,10 @@
-/* eslint-disable no-undef */
 import './style.scss'
 import { Game } from './game'
 import { VirtualKeyboard } from './keyboard'
-import { Modal } from './modal.js'
 import { createElement } from './utils/createElement'
 
 export const gameArea = createElement('div', 'gameArea')
-document.querySelector('body').append(gameArea)
+document.body.append(gameArea)
 const leftPane = createElement('div', 'leftPane')
 const rightPane = createElement('div', 'rightPane')
 gameArea.append(leftPane, rightPane)
@@ -26,11 +24,6 @@ rightPane.append(info, guess, keyboard)
 const game = new Game(gameArea, guess, gallow)
 game.init()
 
-/*const counter = createElement(
-  'div',
-  'counter',
-  `Errors count: ${game.countErrors()}`,
-)*/
 leftPane.append(restartButton)
 const kboard = new VirtualKeyboard(gameArea, game, gallow)
 kboard.renderKeyboard(keyboard)

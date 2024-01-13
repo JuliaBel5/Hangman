@@ -35,12 +35,11 @@ export class VirtualKeyboard {
       'Y',
       'Z',
     ]
-
+    this.buttons = []
     window.addEventListener('keydown', (event) => {
       const key = event.code.slice(-1)
       this.handleKeyPress(key)
-      const buttons = document.querySelectorAll('.keyboard-button')
-      buttons.forEach((button) => {
+      this.buttons.forEach((button) => {
         if (button.textContent === key) {
           button.classList.add('disabled')
         }
@@ -57,7 +56,7 @@ export class VirtualKeyboard {
   renderKeyboard(keyboard) {
     for (const key of this.keys) {
       const button = createElement('div', 'keyboard-button', key)
-
+      this.buttons.push(button)
       keyboard.append(button)
 
       button.addEventListener('click', () => {
@@ -73,11 +72,8 @@ export class VirtualKeyboard {
     const word = this.game.getCurrentWord()
     if (word.toUpperCase().includes(key)) {
       let ind = word.toUpperCase().indexOf(key)
-      const letters = Array.from(
-        this.game.section.querySelectorAll('.letter-to-guess'),
-      )
       while (ind !== -1) {
-        letters[ind].classList.add('active')
+        this.game.letters[ind].classList.add('active')
         ind = word.toUpperCase().indexOf(key, ind + 1)
       }
     } else {
