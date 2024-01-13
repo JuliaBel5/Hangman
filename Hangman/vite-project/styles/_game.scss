@@ -62,11 +62,6 @@
 
 }
 
-.letter-to-guess:hover {
-  color: rgb(6, 73, 115);
-  transition: (color 0.3s ease-in-out);
-}
-
 .letter-to-guess.active {
   color: rgb(6, 73, 115);
   transition: (color 0.3s ease-in-out);

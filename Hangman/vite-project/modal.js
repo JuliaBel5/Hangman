@@ -31,10 +31,11 @@ export class Modal {
   }
 
   remove() {
-    // eslint-disable-next-line unicorn/prefer-dom-node-remove
-    this.section.removeChild(this.modal)
-    this.overlay.remove()
+    if (this.modal) {
+      this.modal.remove()
+      this.overlay.remove()
 
-    //this.game.resetGame.bind(this.game)
+      //this.game.resetGame.bind(this.game)
+    }
   }
 }

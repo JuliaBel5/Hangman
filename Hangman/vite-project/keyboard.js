@@ -5,7 +5,6 @@ export class VirtualKeyboard {
     this.gameArea = gamearea
     this.game = game
     this.gallow = gallow
-    this.modal = null
     this.keys = [
       'A',
       'B',
@@ -39,22 +38,17 @@ export class VirtualKeyboard {
 
     console.log(this.processingKeypress)
     window.addEventListener('keydown', (event) => {
-      const key = event.code.slice(-1)
-      const notAletter = key.charCodeAt(0)
+      if (!event.code.startsWith('Key')) return
       if (this.processingKeypress) {
         return
       }
-      if (
-        (notAletter >= 65 && notAletter <= 90) ||
-        (notAletter >= 97 && notAletter <= 122)
-      ) {
-        this.handleKeyPress(key)
-        this.buttons.forEach((button) => {
-          if (button.textContent === key) {
-            button.classList.add('disabled')
-          }
-        })
-      }
+      const key = event.code.slice(-1)
+      this.handleKeyPress(key)
+      this.buttons.forEach((button) => {
+        if (button.textContent === key) {
+          button.classList.add('disabled')
+        }
+      })
     })
   }
 
