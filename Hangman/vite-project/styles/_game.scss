@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+
 .gameArea {
   margin: 10px;
   width: 100vw;
@@ -10,10 +14,11 @@
   width: 50%;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 200px;
 }
 
 .rightPane {
@@ -26,8 +31,10 @@
 }
 
 .info {
+  font-family: 'Montserrat', sans-serif;
   color: rgba(6, 73, 115, 1);
   font-size: 24px;
+  font-weight: 600;
 }
 
 .guess {
@@ -61,23 +68,52 @@
 }
 
 .gallow {
-  height: 60%;
+  height: 70%;
 }
 
 .counter {
   height: 80px;
-  width: 150px;
+
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: 'Orbitron', sans-serif;
   color: rgb(6, 73, 115);
 }
 
 .question {
+  font-family: 'Lobster', sans-serif;
 
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 28px;
   color: rgb(66, 32, 11);
+}
+
+.restart {
+  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+
+  /* Define the background color and gradient */
+  background: linear-gradient(to right, rgb(109, 74, 70), rgb(241, 205, 179));
+  color: rgb(245, 239, 191);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(41, 30, 28);
+  cursor: pointer;
+
+  transition: all 0.5s ease-in-out;
+
+}
+
+.restart:hover,
+.restart:active {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, rgb(241, 205, 179), rgb(109, 74, 70));
+  color: rgb(240, 217, 10);
+
 }

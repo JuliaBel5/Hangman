@@ -11,7 +11,7 @@ gameArea.append(leftPane, rightPane)
 const title = createElement('div', 'title', 'Hangman')
 const rules = 'Your task is to guess the word below:'
 const info = createElement('div', 'info', rules)
-const restartButton = createElement('button', 'reboot', 'Restart game')
+const restartButton = createElement('button', 'restart', 'Restart game')
 
 export const gallow = createElement('img', 'gallow')
 gallow.src = 'gallow0.png'
