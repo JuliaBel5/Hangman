@@ -15,7 +15,9 @@
   width: 400px;
   height: 300px;
   overflow: auto;
-  background-color: rgba(68, 62, 62, 0.8);
+  background-color: rgb(247, 236, 218);
+  border: 2px solid rgb(109, 74, 70);
+  border-radius: 15px;
 }
 
 .modal-content {
@@ -28,7 +30,8 @@
 .title {
   font-size: 24px;
   font-family: 'Montserrat', sans-serif;
-  color: rgb(246, 140, 18);
+  color: rgb(109, 74, 70);
+  ;
   height: 20px;
   margin-top: 10px;
   text-align: center;
@@ -39,7 +42,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 20px;
-  color: rgb(239, 243, 135);
+  color: rgba(127, 196, 157, 0.7);
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 }

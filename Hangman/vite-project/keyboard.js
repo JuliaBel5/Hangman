@@ -36,7 +36,6 @@ export class VirtualKeyboard {
     this.buttons = []
     this.processingKeypress = false
 
-    console.log(this.processingKeypress)
     window.addEventListener('keydown', (event) => {
       if (!event.code.startsWith('Key')) return
       if (this.processingKeypress) {

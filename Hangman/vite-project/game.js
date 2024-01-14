@@ -44,7 +44,7 @@ export class Game {
   }
 
   createGuessWord = (word, section) => {
-    word.split('').forEach((el) => {
+    word.split('').forEach((_el) => {
       const letter = createElement('div', 'letter-to-guess')
       this.letters.push(letter)
       section.append(letter)
