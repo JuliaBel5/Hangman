@@ -14,15 +14,22 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-
+  height: 100vh;
   font-family: 'Lobster', sans-serif;
 
-  background: url('./background.png');
-  background-size: cover;
+  background: url('./background0.png');
+  background-size: auto;
   background-repeat: no-repeat;
 
 }
 
+@media screen and (max-width: 800px) {
+  body {
+    height: fit-content;
+    background-size: auto;
+    background-repeat: repeat;
+  }
+}
 
 button {
   border-radius: 8px;

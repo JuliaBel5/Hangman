@@ -19,7 +19,7 @@ export class Game {
       'counter',
       `Errors count: ${this.getErrors()}`,
     )
-    this.gamearea.firstChild.append(this.counter)
+    this.gamearea.children[1].append(this.counter)
   }
 
   init = () => {
@@ -45,7 +45,7 @@ export class Game {
 
   createGuessWord = (word, section) => {
     word.split('').forEach((el) => {
-      const letter = createElement('div', 'letter-to-guess', el.toUpperCase())
+      const letter = createElement('div', 'letter-to-guess')
       this.letters.push(letter)
       section.append(letter)
     })
@@ -62,17 +62,17 @@ export class Game {
   getErrors() {
     if (this.errors === 0) {
       this.gallow.src = `gallow0.png`
-    } else if (this.errors > 0 && this.errors < 7) {
+    } else if (this.errors > 0 && this.errors < 6) {
       this.gallow.src = `gallow${this.errors}.png`
-    } else if (this.errors === 7 && !this.modalIsOpen) {
+    } else if (this.errors === 6 && !this.modalIsOpen) {
       this.gallow.src = `gallow7.png`
       this.modal.showModal(
         "Oops! You've lost",
         `The word to guess was: ${this.word.toUpperCase()}`,
       )
       this.modalIsOpen = true
-    } else if (this.errors > 7) {
-      this.counter.textContent = `Errors count: 7`
+    } else if (this.errors > 6) {
+      this.counter.textContent = `Errors count: 6`
       this.gallow.src = `gallow7.png`
     }
     return this.errors
@@ -83,6 +83,7 @@ export class Game {
       let ind = this.word.toUpperCase().indexOf(key)
       while (ind !== -1) {
         this.letters[ind].classList.add('active')
+        this.letters[ind].textContent = key
         this.letters[ind].style.border = 'none'
         ind = this.word.toUpperCase().indexOf(key, ind + 1)
       }

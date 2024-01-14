@@ -5,8 +5,51 @@
 .gameArea {
   margin: 10px;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .gameArea {
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+.title {
+  width: 100%;
+
+}
+
+@media screen and (max-width: 800px) {
+  .title {
+    margin-bottom: 10px;
+
+  }
+}
+
+.title-img {
+  margin: auto;
+  height: 130px;
+}
+
+@media screen and (max-width: 800px) {
+  .title-img {
+    height: 115px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .title-img {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .title-img {
+    height: 80px;
+  }
 }
 
 .rightPane,
@@ -14,32 +57,81 @@
 
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  justify-content: center;
+  padding-top: 8%;
   align-items: center;
   text-align: center;
-  margin-top: 200px;
+  height: 90vh;
+
 }
 
+
+
 .rightPane {
+
   width: 60%;
+  gap: 15px;
   margin-top: 0;
 }
 
 .leftPane {
-  width: 40%;
+  width: 35%;
 }
 
-.title {
-  font-size: 24px;
-  color: rgb(6, 73, 115);
+@media screen and (max-width: 800px) {
+
+  .rightPane,
+  .leftPane {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .leftPane {
+    order: 2;
+  }
+
+  .rightPane {
+    order: 1;
+  }
 }
+
+
 
 .info {
+  padding-left: 5px;
   font-family: 'Montserrat', sans-serif;
   color: rgba(6, 73, 115, 1);
   font-size: 24px;
   font-weight: 600;
+  margin-top: 5%;
+}
+
+.subinfo {
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(14, 74, 82);
+  font-size: 20px;
+  font-weight: 400;
+
+}
+
+@media screen and (max-width: 900px) {
+  .info {
+    font-size: 20px;
+  }
+
+  .subinfo {
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .info {
+    width: 90%;
+  }
+
+  .subinfo {
+    width: 90%;
+  }
 }
 
 .guess {
@@ -47,6 +139,16 @@
   justify-content: center;
   height: 80px;
   gap: 7px;
+  pointer-events: none;
+  width: 95%;
+}
+
+@media screen and (max-width: 800px) {
+  .guess {
+    width: 95%;
+    height: fit-content;
+    margin-bottom: 10px;
+  }
 }
 
 .letter-to-guess {
@@ -57,8 +159,7 @@
   font-size: 32px;
   font-weight: 600;
   padding: 2px;
-  color: rgb(247, 236, 218);
-
+  color: rgba(247, 236, 218, 0);
 
 }
 
@@ -67,16 +168,83 @@
   transition: (color 0.3s ease-in-out);
 }
 
+
+@media screen and (max-width: 800px) {
+  .letter-to-guess {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .letter-to-guess {
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .letter-to-guess {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+
+  }
+}
+
 .gallow {
-  height: 70%;
+  height: 90%;
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 900px) {
+  .gallow {
+    height: 80%;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .gallow {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .gallow {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .gallow {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .gallow {
+    height: 330px;
+  }
 }
 
 .counter {
   height: 80px;
-
   font-size: 18px;
   font-family: 'Orbitron', sans-serif;
   color: rgb(6, 73, 115);
+}
+
+@media screen and (max-width: 800px) {
+  .counter {
+    height: 40px;
+
+  }
 }
 
 .question {
@@ -88,30 +256,17 @@
   color: rgb(66, 32, 11);
 }
 
-.restart {
-  font-family: Arial, sans-serif;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  font-weight: bold;
+@media screen and (max-width: 800px) {
+  .question {
+    width: 90%;
+    font-size: 26px;
 
-  /* Define the background color and gradient */
-  background: linear-gradient(to right, rgb(109, 74, 70), rgb(241, 205, 179));
-  color: rgb(245, 239, 191);
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgb(41, 30, 28);
-  cursor: pointer;
-
-  transition: all 0.5s ease-in-out;
-
+  }
 }
 
-.restart:hover,
-.restart:active {
-  transform: scale(1.05);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to right, rgb(241, 205, 179), rgb(109, 74, 70));
-  color: rgb(240, 217, 10);
+@media screen and (max-width: 550px) {
+  .question {
+    font-size: 24px;
 
+  }
 }

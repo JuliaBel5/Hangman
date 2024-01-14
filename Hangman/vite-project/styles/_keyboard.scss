@@ -45,3 +45,10 @@
   height: 150px;
   padding: 5px;
 }
+
+@media screen and (max-width: 800px) {
+  .keyboard {
+    width: 90%;
+    height: fit-content;
+  }
+}
