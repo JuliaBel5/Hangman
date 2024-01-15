@@ -235,15 +235,26 @@
 }
 
 .counter {
+  margin-top: 50px;
   height: 80px;
-  font-size: 18px;
+  font-size: 22px;
   font-family: 'Orbitron', sans-serif;
   color: rgb(6, 73, 115);
+
+}
+
+@media screen and (max-width: 900px) {
+  .counter {
+    margin-top: 15px;
+    height: 30px;
+
+  }
 }
 
 @media screen and (max-width: 800px) {
   .counter {
-    height: 40px;
+    margin-top: 10px;
+    height: 30px;
 
   }
 }
@@ -270,4 +281,27 @@
     font-size: 24px;
 
   }
+}
+
+.mute {
+  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 150px;
+  background: linear-gradient(to right, rgb(109, 74, 70), rgb(239, 194, 162));
+  color: rgb(245, 239, 191);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(75, 70, 69);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.mute:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, rgb(242, 195, 162), rgb(109, 74, 70));
+  color: rgb(248, 245, 213);
 }

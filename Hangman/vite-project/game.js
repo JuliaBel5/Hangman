@@ -19,7 +19,18 @@ export class Game {
       'counter',
       `Errors count: ${this.getErrors()}`,
     )
-    this.gamearea.children[1].append(this.counter)
+    this.gamearea.children[2].append(this.counter)
+    this.unlock = new Audio('unlock.wav')
+    this.unlock.volume = 0.2
+    this.wrong = new Audio('wrong.wav')
+    this.wrong.volume = 0.2
+    this.win = new Audio('win.wav')
+    this.win.volume = 0.2
+    this.new = new Audio('new.wav')
+    this.new.volume = 0.2
+    this.loose = new Audio('loose.wav')
+    this.loose.volume = 0.2
+    this.isMuted = false
   }
 
   init = () => {
@@ -65,15 +76,16 @@ export class Game {
     } else if (this.errors > 0 && this.errors < 6) {
       this.gallow.src = `gallow${this.errors}.png`
     } else if (this.errors === 6 && !this.modalIsOpen) {
-      this.gallow.src = `gallow7.png`
+      this.gallow.src = `gallow${this.errors}.png`
       this.modal.showModal(
         "Oops! You've lost",
         `The word to guess was: ${this.word.toUpperCase()}`,
       )
+      this.loose.play()
       this.modalIsOpen = true
     } else if (this.errors > 6) {
       this.counter.textContent = `Errors count: 6`
-      this.gallow.src = `gallow7.png`
+      this.gallow.src = `gallow6.png`
     }
     return this.errors
   }
@@ -87,10 +99,12 @@ export class Game {
         this.letters[ind].style.border = 'none'
         ind = this.word.toUpperCase().indexOf(key, ind + 1)
       }
+      this.unlock.play()
     } else {
       this.countErrors()
       const errors = this.getErrors()
       this.counter.textContent = `Errors count: ${errors}`
+      this.wrong.play()
     }
   }
 
@@ -100,6 +114,7 @@ export class Game {
         'Wow! You won!!',
         `The word to guess was: ${this.word.toUpperCase()}`,
       )
+      this.win.play()
     }
   }
 
@@ -127,6 +142,16 @@ export class Game {
     this.modalIsOpen = false
     this.modal.remove()
     this.letters = []
+    this.new.play()
     this.init()
+  }
+
+  toggleMute() {
+    this.isMuted = !this.isMuted
+    this.unlock.muted = this.isMuted
+    this.wrong.muted = this.isMuted
+    this.win.muted = this.isMuted
+    this.new.muted = this.isMuted
+    this.loose.muted = this.isMuted
   }
 }

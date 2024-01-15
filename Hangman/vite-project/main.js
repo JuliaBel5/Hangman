@@ -16,7 +16,7 @@ const subinfo = createElement('div', 'subinfo', warning)
 const rules =
   'Your task is to guess the word below. You have 6 attempts. Good luck!'
 const info = createElement('div', 'info', rules)
-//const restartButton = createElement('button', 'restart', 'Restart game')
+const mute = createElement('button', 'mute', 'Mute')
 
 export const gallow = createElement('img', 'gallow')
 gallow.src = 'gallow0.png'
@@ -29,10 +29,11 @@ rightPane.append(info, subinfo, guess, keyboard)
 const game = new Game(gameArea, guess, gallow)
 game.init()
 
-//leftPane.append(restartButton)
+leftPane.append(mute)
 const kboard = new VirtualKeyboard(gameArea, game, gallow)
 kboard.renderKeyboard(keyboard)
 
-//restartButton.addEventListener('click', () => {
-//  game.resetGame()
-//})
+mute.addEventListener('click', () => {
+  game.toggleMute()
+  mute.textContent = game.isMuted ? 'Unmute' : 'Mute'
+})
