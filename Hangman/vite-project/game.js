@@ -30,6 +30,7 @@ export class Game {
     this.new.volume = 0.2
     this.loose = new Audio('loose.wav')
     this.loose.volume = 0.2
+
     this.isMuted = false
   }
 

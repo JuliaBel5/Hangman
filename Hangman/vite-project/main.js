@@ -34,6 +34,9 @@ const kboard = new VirtualKeyboard(gameArea, game, gallow)
 kboard.renderKeyboard(keyboard)
 
 mute.addEventListener('click', () => {
+  const muted = new Audio('mute.wav')
+  muted.volume = 0.2
   game.toggleMute()
+  muted.play()
   mute.textContent = game.isMuted ? 'Unmute' : 'Mute'
 })
