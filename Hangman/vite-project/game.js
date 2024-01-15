@@ -3,6 +3,11 @@ import { createElement } from './utils/createElement'
 import { questions } from './utils/questions'
 import { wordsToGuess } from './utils/words'
 
+Audio.prototype.resetAndPlay = function () {
+  this.currentTime = 0
+  this.play()
+}
+
 export class Game {
   constructor(gamearea, section, gallow) {
     this.gamearea = gamearea
@@ -82,7 +87,7 @@ export class Game {
         "Oops! You've lost",
         `The word to guess was: ${this.word.toUpperCase()}`,
       )
-      this.loose.play()
+      this.loose.resetAndPlay()
       this.modalIsOpen = true
     } else if (this.errors > 6) {
       this.counter.textContent = `Errors count: 6`
@@ -100,12 +105,13 @@ export class Game {
         this.letters[ind].style.border = 'none'
         ind = this.word.toUpperCase().indexOf(key, ind + 1)
       }
-      this.unlock.play()
+      this.unlock.resetAndPlay()
     } else {
       this.countErrors()
       const errors = this.getErrors()
       this.counter.textContent = `Errors count: ${errors}`
-      this.wrong.play()
+      this.wrong.currentTime = 0
+      this.wrong.resetAndPlay()
     }
   }
 
@@ -115,7 +121,7 @@ export class Game {
         'Wow! You won!!',
         `The word to guess was: ${this.word.toUpperCase()}`,
       )
-      this.win.play()
+      this.win.resetAndPlay()
     }
   }
 
@@ -143,7 +149,7 @@ export class Game {
     this.modalIsOpen = false
     this.modal.remove()
     this.letters = []
-    this.new.play()
+    this.new.resetAndPlay()
     this.init()
   }
 

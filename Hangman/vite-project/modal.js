@@ -6,6 +6,13 @@ export class Modal {
     this.section = section
     this.game = game
     this.modal = null
+    this.isShown = false
+  }
+
+  handleEnter = (event) => {
+    if (!event.code.endsWith('Enter')) return
+
+    this.game.resetGame()
   }
 
   create(title, message) {
@@ -27,13 +34,18 @@ export class Modal {
   }
 
   showModal(title, message) {
+    this.isShown = true
     this.create(title, message)
+    document.addEventListener('keydown', this.handleEnter)
   }
 
   remove() {
     if (this.modal) {
+      this.isShown = false
       this.modal.remove()
       this.overlay.remove()
+
+      document.removeEventListener('keydown', this.handleEnter)
 
       //this.game.resetGame.bind(this.game)
     }

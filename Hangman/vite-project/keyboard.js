@@ -5,6 +5,7 @@ export class VirtualKeyboard {
     this.gameArea = gamearea
     this.game = game
     this.gallow = gallow
+
     this.keys = [
       'A',
       'B',
@@ -33,35 +34,38 @@ export class VirtualKeyboard {
       'Y',
       'Z',
     ]
-    this.buttons = []
+    this.buttons = new Map()
     this.processingKeypress = false
 
     window.addEventListener('keydown', (event) => {
-      if (!event.code.startsWith('Key')) return
-      if (this.processingKeypress) {
+      if (
+        this.game.modal.isShown ||
+        !event.code.startsWith('Key') ||
+        this.processingKeypress
+      )
         return
-      }
+
       const key = event.code.slice(-1)
+      const button = this.buttons.get(key)
+
+      if (button?.classList.contains('disabled')) return
+
+      button?.classList.add('disabled')
       this.handleKeyPress(key)
-      this.buttons.forEach((button) => {
-        if (button.textContent === key) {
-          button.classList.add('disabled')
-        }
-      })
     })
   }
 
   renderKeyboard(keyboard) {
     for (const key of this.keys) {
       const button = createElement('div', 'keyboard-button', key)
-      this.buttons.push(button)
+
+      this.buttons.set(key, button)
       keyboard.append(button)
 
       button.addEventListener('click', () => {
         if (!button.classList.contains('disabled')) {
-          if (this.processingKeypress) {
-            return
-          }
+          if (this.processingKeypress) return
+
           button.classList.add('disabled')
           this.handleKeyPress(key)
         }
