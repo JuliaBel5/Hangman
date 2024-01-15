@@ -18,6 +18,13 @@
   background-color: rgb(247, 236, 218);
   border: 2px solid rgb(109, 74, 70);
   border-radius: 15px;
+  gap: 30px;
+}
+
+@media screen and (max-width: 650px) {
+  .modal {
+    width: 320px;
+  }
 }
 
 .modal-content {
@@ -25,6 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 30px;
 }
 
 .title {
@@ -33,14 +41,13 @@
   color: rgb(109, 74, 70);
   ;
   height: 20px;
-  margin-top: 10px;
+
   text-align: center;
 }
 
 .message {
-  height: 60px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: fit-content;
+
   font-size: 20px;
   color: rgba(127, 196, 157, 0.9);
   font-family: 'Montserrat', sans-serif;

@@ -39,11 +39,10 @@
 .keyboard {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
   justify-content: space-between;
   width: 95%;
-  height: 150px;
-  padding: 5px;
+
 }
 
 @media screen and (max-width: 800px) {
