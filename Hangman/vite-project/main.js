@@ -11,10 +11,10 @@ const leftPane = createElement('div', 'leftPane')
 const rightPane = createElement('div', 'rightPane')
 gameArea.append(title, leftPane, rightPane)
 const warning =
-  'Please, make sure you are using a classical QWERTY keyboard or use the virtual keyboard below:'
+  'Убедитесь, что вы используете классическую QWERTY-клавиатуру, или воспользуйтесь виртуальной клавиатурой ниже:'
 const subinfo = createElement('div', 'subinfo', warning)
 const rules =
-  'Your task is to guess the word below. You have 6 attempts. Good luck!'
+  'Ваша задача - угадать слово, указанное ниже. У вас есть 6 попыток. Удачи!'
 const info = createElement('div', 'info', rules)
 const mute = createElement('button', 'mute', 'Mute')
 
