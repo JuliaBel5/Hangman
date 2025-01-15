@@ -47,12 +47,12 @@ export class VirtualKeyboard {
     window.addEventListener('keydown', (event) => {
       if (
         this.game.modal.isShown ||
-        !event.code.startsWith('Key') ||
+        !this.keys.includes(event.key.toUpperCase()) ||
         this.processingKeypress
       )
         return
 
-      const key = event.code.slice(-1)
+      const key = event.key.toUpperCase()
       const button = this.buttons.get(key)
 
       if (button?.classList.contains('disabled')) return
